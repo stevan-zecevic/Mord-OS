@@ -1,0 +1,40 @@
+.login {
+  height: 100%;
+  width: 100%;
+  background-color: #121212;
+
+  .titles {
+    img {
+      max-width: 20rem;
+    }
+
+    h1 {
+      font-size: 4rem;
+      color: #7c1f08;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #494949;
+    }
+  }
+
+  form {
+    width: 20%;
+
+    input[type="submit"] {
+      height: 3rem;
+      width: 100%;
+      outline: none;
+      border: none;
+      padding: 1rem;
+      color: white;
+      background-color: #eb4511;
+      background-image: linear-gradient(315deg, #eb4511 0%, #b02e0c 74%);
+      border-radius: 0.25rem;
+      outline: none;
+      border: none;
+      transition: 0.3s all ease;
+    }
+  }
+}

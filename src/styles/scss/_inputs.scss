@@ -1,0 +1,82 @@
+.custom-input {
+  position: relative;
+  width: 100%;
+
+  input {
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 1.2rem 1rem;
+    color: white;
+  }
+
+  svg {
+    color: gray;
+    position: absolute;
+    z-index: 1;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  input:not([type="submit"]) {
+    background-color: #272727;
+    border-radius: 0.5rem;
+  }
+
+  input[type="submit"] {
+    background-color: #eb4511;
+    background-image: linear-gradient(315deg, #eb4511 0%, #b02e0c 74%);
+    border-radius: 0.25rem;
+    outline: none;
+    border: none;
+    transition: 0.2s ease all;
+
+    & ~ svg {
+      color: white;
+    }
+  }
+
+  input::placeholder {
+    opacity: 0;
+  }
+
+  .floating-label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: gray;
+    transition: 0.2s ease all;
+  }
+
+  input:focus ~ .floating-label,
+  input:not(:placeholder-shown) ~ .floating-label {
+    top: 11px;
+    left: 15px;
+    font-size: 10px;
+    opacity: 1;
+  }
+
+  &:hover input[type="submit"] {
+    font-size: 1rem;
+    padding: 0;
+  }
+}
+
+.editName-input {
+  background-color: transparent;
+  font-size: 1.5rem;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  outline: none;
+
+  @media screen and (max-width: $medium) {
+    font-size: 1.2rem;
+  }
+
+  @media screen and (max-width: $small) {
+    font-size: 1rem;
+  }
+}

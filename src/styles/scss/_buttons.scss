@@ -1,0 +1,43 @@
+.custom-button {
+  color: rgb(116, 116, 116);
+  padding: 0.75rem 1rem;
+  border: 2px solid rgb(116, 116, 116);
+  // border: none;
+  border-radius: 1rem;
+  background: transparent;
+  // background-color: #a40606;
+  // background-image: linear-gradient(315deg, #a40606 0%, #d98324 74%);
+  transition: 0.2s all ease;
+
+  &:hover {
+    transform: scale(1.2);
+    color: white;
+    border-color: white;
+  }
+}
+
+.add-button {
+  background: #484848;
+  border: none;
+  display: flex;
+  align-items: center;
+  // padding: 0.25rem 0.5rem;
+  justify-content: center;
+  color: white;
+  border-radius: 0.5rem;
+  transition: 0.2s all ease;
+
+  &:hover {
+    transform: scale(1.1);
+    color: #d98324;
+    svg {
+      color: #d98324;
+    }
+  }
+}
+
+.delete-button {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+}
