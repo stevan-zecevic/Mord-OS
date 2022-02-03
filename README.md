@@ -1,70 +1,161 @@
-# Getting Started with Create React App
+# Demo 
+[MordOS - One OS to rule them all](https://mord-os.netlify.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Screenshots 
+###### Desktop:  
+[![Login.jpg](https://i.postimg.cc/21KKwBWF/Login.jpg)](https://postimg.cc/21KKwBWF)
+[![Desktop.jpg](https://i.postimg.cc/94wNNFt3/Desktop.jpg)](https://postimg.cc/94wNNFt3)
+[![Folder.jpg](https://i.postimg.cc/fkc1Ny4D/Folder.jpg)](https://postimg.cc/fkc1Ny4D)
+[![Folder2.jpg](https://i.postimg.cc/bsLMZ5N5/Folder2.jpg)](https://postimg.cc/bsLMZ5N5)
+[![File.jpg](https://i.postimg.cc/RJLYQs1N/File.jpg)](https://postimg.cc/RJLYQs1N)
+[![Browser.jpg](https://i.postimg.cc/tsTcWzs4/Browser.jpg)](https://postimg.cc/tsTcWzs4)
+[![WebCam.jpg](https://i.postimg.cc/MfS4B2QC/WebCam.jpg)](https://postimg.cc/MfS4B2QC)
+[![Gallery.jpg](https://i.postimg.cc/TpTFYxGm/Gallery.jpg)](https://postimg.cc/TpTFYxGm)
+[![Gallery2.jpg](https://i.postimg.cc/BLDktQX5/Gallery2.jpg)](https://postimg.cc/BLDktQX5)
+[![News.jpg](https://i.postimg.cc/mcP0fS45/News.jpg)](https://postimg.cc/mcP0fS45)
 
-## Available Scripts
 
-In the project directory, you can run:
+# How to run
+`git clone` the project locally  
+`npm install` to install all the dependencies  
+`npm start` to run the project in your browser
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Project overview
+#### Functional requirements: 
+- OS should support creating and managing plain text files and include a directory mechanic in
+order to sort the files as one wishes.
+- There should be a simple authentication feature so not everyone can access the OS. A simple email
+and password flow will do for now. (email: borgoth@mordos.com / pass: 12bindthem)
+- No visual UI libraries should be used.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Other functionalities that are not as crucial but could really help enrich the OS:
+- To keep up with all the news and banter going on, the OS could include a dedicated **RSS reader app**. (data source: https://jsonplaceholder.typicode.com/comments)
+- Having a **Camera app** seems like a must for any OS today.
+- It would be good if the OS had a **Gallery app** to view images from different sources without having to switch. (data source: https://jsonplaceholder.typicode.com/photos , but can include others)
+- The OS could also have a **dedicated web browser**. Can be simple at first.
 
-### `npm test`
+#### Deadline: 7 days
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##### Project anatomy: 
+```
+├── public
+│   ├── images
+|       ├── mordor.png
+|       ├── the-one-ring.png
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── manifest.json
+│   └── robots.txt
 
-### `npm run build`
+├── src
+│   ├── components
+│   │   ├── Common
+│   │   │   ├── Add.js
+│   │   │   ├── BackButton.js
+│   │   │   ├── Button.js
+│   │   │   └── Header.js
+│   │   ├── Context
+│   │   │   ├── AuthProvider.js
+│   │   │   ├── FilesProvider.js
+│   │   │   └── FoldersProvider.js
+│   │   ├── File
+│   │   │   ├── File.js
+│   │   │   └── FileHeader.js
+│   │   ├── Folder
+│   │   │   ├── Folder.js
+│   │   │   ├── FolderBody.js
+│   │   │   └── FolderHeader.js
+│   │   ├── Input
+│   │   │   ├── EditNameInput.js
+│   │   │   └── Input.js
+│   │   ├── Browser.js
+│   │   ├── Camera.js
+│   │   ├── ControlPanel.js
+│   │   ├── Desktop.js
+│   │   ├── Gallery.js
+│   │   ├── Image.js
+│   │   ├── Login.js
+│   │   └── News.js
+│   ├── styles
+│   │   ├── css
+│   │   │   ├── style.css
+│   │   │   └── style.css.map
+│   │   └── scss
+│   │   │   ├── _basicStyles.scss
+│   │   │   ├── _browser.scss
+│   │   │   ├── _buttons.scss
+│   │   │   ├── _camera.scss
+│   │   │   ├── _classes.scss
+│   │   │   ├── _controlPanel.scss
+│   │   │   ├── _desktop.scss
+│   │   │   ├── _file.scss
+│   │   │   ├── _folder.scss
+│   │   │   ├── _gallery.scss
+│   │   │   ├── _header.scss
+│   │   │   ├── _inputs.scss
+│   │   │   ├── _login.scss
+│   │   │   ├── _news.scss
+│   │   │   ├── _variables.scss
+│   │   │   └── style.scss
+│   ├── utils
+│   │   └── constants.js
+│   ├── App.js
+│   └── index.js
+├── .gitignore
+├── package-lock.json
+├── package.json
+└── README.md
+```
+##### Data models
+  - Folder
+     - _id - incremental identification number for folder 
+     - type: "folder" - always fixed value
+     - name - name of folder, first value is always "New Folder"
+     - createdOn - date the folder was created
+     - subFolders - arrays of all subfolders
+     - subFiles - arrays of all subfiles
+     - open - status which stores two possible values:
+       - true - represents the file is open 
+       - false - true - represents the file is closed
+             
+  - File 
+    - _id - incremental identification number for file 
+    - type: "file" - always fixed value
+    - name - name of file, first value is always "New File"
+    - createdOn - date the file was created
+    - size - size of current folder in Bytes, in this project 1 character has size of 1 Byte
+    - subFiles - arrays of all subfiles
+    - open - status which stores two possible values
+      - true - represents the file is open 
+      - false - represents the file is closed
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##### Context (state at app level)
+ - [AuthProvider](https://github.com/stevan-zecevic/Mord-OS/blob/master/src/components/Context/AuthProvider.js) - Authentication context which wraps whole application and checks if user is logged in or not.  
+ - [FolderProvider](https://github.com/stevan-zecevic/Mord-OS/blob/master/src/components/Context/FoldersProvider.js) - Folder context which stores made folders and their current status.
+ - [FilesProvider](https://github.com/stevan-zecevic/Mord-OS/blob/master/src/components/Context/FilesProvider.js) - File context which stores made files and their current status. 
+  
+#### Additional improvements / features suggestions:
+ - **Drag & Move** - window feature that allows user to drag and move App's window across the screen. It could be built by trying to register the mouse events such as `onMouseDown`,`onMouseUp` & `onMouseMove` of the ref element while keeping track of the current's mouse position coordinates on the screen. Certain limitations on the boundaries of the area that's allowed to be used, should also be set.  
+   
+ - **"Priority" of windows** - a feature that allows for windows to take priority based on the `selected` status. This feature could be implemented by dynamically assigning `z-index` to a currently `selected` window.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ - **Formating of text files** - a feature that allows for user to format text files in most basic ways like bold, italic ,underline, font size etc. Idea is to save whole file as string and use DOMParser to parse that value from string to HTML.
+  
+ - **Camera upload** - a feature that let's a user take & save a picture and video taken with his camera (if avalible both front and back) to `Gallery`(Folder) component.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ - **News comments** - a feature that let's a user make a comment on News article or replay to an existing comment.
 
-### `npm run eject`
+ etc.
+  
+#### Things that I would do differently: 
+    
+  - **Making scss files more modular** - Storing as much values as I can in variables that can later be easily changed.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  - **Making a web crawler to display websites correctly** -  idea is similar to https://www.webcrawler.com/ which has perfect solutuion for our project. 
+  
+  - **Make more general components** - files and folders have same header with exception of couple of buttons which is not a big of a problem to add conditionally to component.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Most painful point of the project:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+By far the most painful part was deciding how should i save the data in localStorage. Idea was to have directory mechanic same as Windows, Linux or any other OS, but the problem was how to store it and how to later easily parse that data. In the end I ended up make two "collections" in localStorage and conecting them together with _id. 
