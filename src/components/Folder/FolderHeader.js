@@ -52,14 +52,17 @@ const FolderHeader = ({ folder = {} }) => {
 
   const saveFolderName = () => {
     let folderName = newFolderName;
+
+    // Check if name is already taken, but the scope is the same parent folder
     const temp = folders.filter(
       (folderObj) => folderObj.name.includes(newFolderName) && folderObj._id !== folder._id
     );
-
+    // If name is taken add to it number which incremental
     if (temp.length > 0) {
       folderName = `${folderName}(${Number(temp[temp.length - 1].name.slice(11, -1)) + 1})`;
     }
 
+    // Update folders
     const newFolders = folders.map((folderObj) => {
       if (folderObj.name === folder.name) {
         folderObj.name = folderName;
@@ -71,9 +74,12 @@ const FolderHeader = ({ folder = {} }) => {
   };
 
   const createFolder = () => {
+    // Get subfolders of parent element and check their names, we want to find if New Folder name already exists
     const subFolders = folders.filter((folderObj) => folder.subFolders.includes(folderObj._id));
     const temp = subFolders.filter((folderObj) => folderObj.name.includes("New Folder"));
 
+    // Model for new folder
+    // Check if name is already taken, but the scope is the same parent folder
     const model = {
       type: "folder",
       name:
@@ -87,6 +93,7 @@ const FolderHeader = ({ folder = {} }) => {
       _id: folders[folders.length - 1]._id + 1,
     };
 
+    // update subFolders of  currently open folder
     const newFolders = folders.map((folderObj) => {
       if (folderObj._id === folder._id) {
         folderObj.subFolders.push(model._id);
@@ -97,6 +104,7 @@ const FolderHeader = ({ folder = {} }) => {
     setFolders([...newFolders, model]);
   };
 
+  // Function work same as for folders only difference is that it's files
   const createFile = () => {
     const folderFiles = files.filter((fileObj) => folder.subFiles.includes(fileObj._id));
     const temp = folderFiles.filter((fileObj) => fileObj.name.includes("New File"));

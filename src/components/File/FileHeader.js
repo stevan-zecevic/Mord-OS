@@ -5,8 +5,8 @@ import { FilesContext } from "../Context/FilesProvider";
 import EditNameInput from "../Input/EditNameInput";
 import { FoldersContext } from "../Context/FoldersProvider";
 
-const FileHeader = ({ file }) => {
-  const { folders, setFolders } = useContext(FoldersContext);
+const FileHeader = ({ file = {} }) => {
+  const { folders } = useContext(FoldersContext);
   const { files, setFiles } = useContext(FilesContext);
 
   const [isEdit, setIsEdit] = useState(false);

@@ -14,7 +14,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const FolderBody = ({ folder }) => {
+const FolderBody = ({ folder = {} }) => {
   const { folders, setFolders } = useContext(FoldersContext);
   const { files, setFiles } = useContext(FilesContext);
 
@@ -28,6 +28,7 @@ const FolderBody = ({ folder }) => {
     }
   }, [folder, folders, files]);
 
+  // Push all subFolders and subFiles of current folder in one array and form data for table
   const formTableData = () => {
     const tableData = [];
     folder.subFolders.forEach((subFolder) => {
@@ -42,11 +43,10 @@ const FolderBody = ({ folder }) => {
         tableData.push(obj);
       }
     });
-
-    console.log("TableData", tableData);
     setTableData(tableData);
   };
 
+  // open folder/file and close all of the rest folers/files
   const open = ({ _id, type }) => {
     if (type === "folder") {
       const newFolders = folders.map((folderObj) => {
@@ -73,6 +73,7 @@ const FolderBody = ({ folder }) => {
     }
   };
 
+  // Remove current folder/file but also update it's parent subFolders/subFiles
   const deleteItem = ({ _id, type }) => {
     let newFolders;
     if (type === "folder") {

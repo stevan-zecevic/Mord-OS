@@ -33,21 +33,16 @@ const Desktop = ({}) => {
         toggleNews={toggleNews}
       />
       <div className="viewer">
-        {/* Folders */}
+        {/* Check what is opened and show it in this order */}
         {folders &&
           folders.length > 0 &&
           folders.map((folderObj) => folderObj.open && <Folder folder={folderObj} />)}
-        {/* Files */}
         {files &&
           files.length > 0 &&
           files.map((fileObj) => fileObj.open && <File file={fileObj} />)}
-        {/* Browser */}
         {isBrowserOpen && <Browser toggleBrowser={toggleBrowser} />}
-        {/* Camera */}
         {isCameraOpen && <Camera toggleCamera={toggleCamera} />}
-        {/* Gallery */}
         {isGalleryOpen && <Gallery toggleGallery={toggleGallery} />}
-        {/* News */}
         {isNewsOpen && <News toggleNews={toggleNews} />}
       </div>
     </section>

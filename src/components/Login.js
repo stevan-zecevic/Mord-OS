@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import Input from "./Input/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { EMAIL, PASSWORD } from "../utils/constants";
 import { AuthContext } from "./Context/AuthProvider";
+import Input from "./Input/Input";
+import { EMAIL, PASSWORD } from "../utils/constants";
 
 const Login = () => {
   const { setIsAuthenticated } = useContext(AuthContext);
@@ -26,6 +26,7 @@ const Login = () => {
     }
   };
 
+  /*function that enables for user to show/hide their password*/
   const changePasswordType = () =>
     setPasswordType(passwordType == "password" ? "text" : "password");
 
