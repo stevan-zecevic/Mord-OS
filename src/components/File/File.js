@@ -9,7 +9,7 @@ const File = ({ file = {} }) => {
     const newFiles = files.map((fileObj) => {
       if (fileObj._id === file._id) {
         fileObj.content = value;
-        fileObj.size = fileObj.content.length * 8;
+        fileObj.size = fileObj.content.length * 1;
       }
 
       return fileObj;
