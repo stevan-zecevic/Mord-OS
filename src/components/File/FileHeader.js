@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { faPencilAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext, useState } from "react/cjs/react.development";
 import { FilesContext } from "../Context/FilesProvider";
 import EditNameInput from "../Input/EditNameInput";
 import { FoldersContext } from "../Context/FoldersProvider";

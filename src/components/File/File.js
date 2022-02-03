@@ -1,5 +1,4 @@
-import React from "react";
-import { useContext } from "react/cjs/react.development";
+import React, { useContext } from "react";
 import { FilesContext } from "../Context/FilesProvider";
 import FileHeader from "./FileHeader";
 

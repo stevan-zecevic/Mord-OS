@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { FoldersContext } from "../Context/FoldersProvider";
 import { FilesContext } from "../Context/FilesProvider";
 import {
@@ -13,7 +13,6 @@ import {
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect } from "react/cjs/react.development";
 
 const FolderBody = ({ folder }) => {
   const { folders, setFolders } = useContext(FoldersContext);
