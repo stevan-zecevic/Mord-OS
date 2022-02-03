@@ -1,7 +1,6 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { useState } from "react/cjs/react.development";
+import React, { useState } from "react";
 import Header from "./Common/Header";
 
 const Browser = ({ toggleBrowser }) => {

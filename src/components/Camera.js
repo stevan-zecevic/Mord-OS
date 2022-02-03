@@ -14,7 +14,7 @@ const Camera = ({ toggleCamera }) => {
   const initVideo = async () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       const constraints = {
-        video: { facingMode },
+        video: true,
         audio: true,
       };
 
