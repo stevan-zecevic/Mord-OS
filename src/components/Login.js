@@ -11,6 +11,7 @@ const Login = () => {
 
   const [user, setUser] = useState({ email: "", password: "" });
   const [passwordType, setPasswordType] = useState("password");
+  const [isError, setIsError] = useState(false);
 
   const handleChange = ({ target: { name, value } }) => setUser({ ...user, [name]: value });
 
@@ -21,6 +22,7 @@ const Login = () => {
       setIsAuthenticated(true);
       localStorage.setItem("isAuthenticated", true);
     } else {
+      setIsError(true);
     }
   };
 
@@ -62,7 +64,9 @@ const Login = () => {
             />
           }
         />
-
+        <p className="m-0" style={isError ? { opacity: 1, color: "red" } : { opacity: 0 }}>
+          Wrong email or password!
+        </p>
         <Input
           type="submit"
           className="mt-4"
