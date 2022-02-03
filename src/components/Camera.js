@@ -1,21 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
-import { faSync } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMicrophone,
+  faMicrophoneSlash,
+  faSync,
+  faVideo,
+  faVideoSlash,
+  faVoicemail,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "./Common/Header";
 
 const Camera = ({ toggleCamera }) => {
   const myVideo = useRef();
-  const [facingMode, setFacingMode] = useState({ exact: "environment" });
+  const [video, setVideo] = useState(true);
+  const [audio, setAudio] = useState(true);
 
   useEffect(() => {
     initVideo();
-  }, [myVideo]);
+  }, [myVideo, audio, video]);
 
   const initVideo = async () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       const constraints = {
-        video: true,
-        audio: true,
+        video,
+        audio,
       };
 
       try {
@@ -29,19 +37,29 @@ const Camera = ({ toggleCamera }) => {
     }
   };
 
-  const changeCamera = () => setFacingMode({ exact: "user" });
+  const toggleVideo = () => setVideo(!video);
+  const toggleAudio = () => setAudio(!audio);
 
   return (
     <section className="camera window">
       <Header title="Web Camera" onClose={toggleCamera} />
       <video ref={myVideo} autoPlay playsInline></video>
-      <FontAwesomeIcon
-        className="switch-camera pointer"
-        icon={faSync}
-        size="2x"
-        color="white"
-        onClick={changeCamera}
-      />
+      <div className="controls">
+        <FontAwesomeIcon
+          className="pointer mr-4"
+          icon={video ? faVideo : faVideoSlash}
+          size="lg"
+          color="white"
+          onClick={toggleVideo}
+        />
+        <FontAwesomeIcon
+          className="pointer ml-4"
+          icon={audio ? faMicrophone : faMicrophoneSlash}
+          size="lg"
+          color="white"
+          onClick={toggleAudio}
+        />
+      </div>
     </section>
   );
 };

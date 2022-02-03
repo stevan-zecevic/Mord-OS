@@ -6,10 +6,11 @@ import {
   faGlobe,
   faImage,
   faNewspaper,
+  faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import Button from "./Common/Button.js";
-import { FoldersContext } from "./Context/FoldersProvider.js";
-
+import Button from "./Common/Button";
+import { FoldersContext } from "./Context/FoldersProvider";
+import { AuthContext } from "./Context/AuthProvider";
 const ControlPanel = ({
   toggleBrowser = () => {},
   toggleCamera = () => {},
@@ -17,6 +18,7 @@ const ControlPanel = ({
   toggleNews = () => {},
 }) => {
   const { folders, setFolders } = useContext(FoldersContext);
+  const { setIsAuthenticated } = useContext(AuthContext);
 
   const openDesktop = () => {
     const newFolders = folders.map((folderObj) => {
@@ -29,6 +31,8 @@ const ControlPanel = ({
 
     setFolders(newFolders);
   };
+
+  const logout = () => setIsAuthenticated(false);
 
   return (
     <section className="control-panel flex flex-column align-center justify-center">
@@ -61,6 +65,12 @@ const ControlPanel = ({
         title="News"
         icon={<FontAwesomeIcon icon={faNewspaper} size="2x" />}
         onClick={toggleNews}
+      />
+      <Button
+        className="mb-4"
+        title="News"
+        icon={<FontAwesomeIcon icon={faSignOutAlt} size="2x" />}
+        onClick={logout}
       />
     </section>
   );

@@ -32,40 +32,72 @@ const FolderBody = ({ folder }) => {
     const tableData = [];
     folder.subFolders.forEach((subFolder) => {
       let obj = folders.filter((folderObj) => folderObj._id === subFolder)[0];
-      tableData.push(obj);
+      if (obj && obj._id) {
+        tableData.push(obj);
+      }
     });
-
     folder.subFiles.forEach((subFile) => {
       let obj = files.filter((fileObj) => fileObj._id === subFile)[0];
-      tableData.push(obj);
+      if (obj && obj._id) {
+        tableData.push(obj);
+      }
     });
+
+    console.log("TableData", tableData);
     setTableData(tableData);
   };
 
-  const openFolder = (folderId) => {
-    const newFolders = folders.map((folderObj) => {
-      if (folderObj._id === folderId) {
-        folderObj.open = true;
-      } else {
-        folderObj.open = false;
-      }
-      return folderObj;
-    });
+  const open = ({ _id, type }) => {
+    if (type === "folder") {
+      const newFolders = folders.map((folderObj) => {
+        if (folderObj._id === _id) {
+          folderObj.open = true;
+        } else {
+          folderObj.open = false;
+        }
+        return folderObj;
+      });
 
-    setFolders(newFolders);
+      return setFolders(newFolders);
+    } else {
+      const newFiles = files.map((fileObj) => {
+        if (fileObj._id === _id) {
+          fileObj.open = true;
+        } else {
+          fileObj.open = false;
+        }
+        return fileObj;
+      });
+
+      return setFiles(newFiles);
+    }
   };
 
-  const openFile = (fileId) => {
-    const newFiles = files.map((fileObj) => {
-      if (fileObj._id === fileId) {
-        fileObj.open = true;
-      } else {
-        fileObj.open = false;
-      }
-      return fileObj;
-    });
+  const deleteItem = ({ _id, type }) => {
+    let newFolders;
+    if (type === "folder") {
+      newFolders = folders.filter((folderObj) => folderObj._id !== _id);
+      newFolders = newFolders.map((folderObj) => {
+        if (folderObj._id === folder._id) {
+          folderObj.subFolders = folderObj.subFolders.filter((folderId) => folderId !== _id);
+        }
 
-    setFiles(newFiles);
+        return folderObj;
+      });
+      console.log(newFolders);
+      return setFolders(newFolders);
+    } else {
+      const newFiles = files.filter((fileObj) => fileObj._id !== _id);
+      newFolders = folders.map((folderObj) => {
+        if (folderObj._id === folder._id) {
+          folderObj.subFiles = folderObj.subFiles.filter((fileId) => fileId !== _id);
+        }
+
+        return folderObj;
+      });
+      setFiles(newFiles);
+      setFolders(newFolders);
+    }
   };
 
   const sortByField = (fieldName, order) => {
@@ -234,21 +266,19 @@ const FolderBody = ({ folder }) => {
                 />
               )}
             </td>
+            <td>Action</td>
           </tr>
         </thead>
         <tbody>
           {tableData.length > 0 &&
             tableData.map((obj) => {
               return (
-                <tr
-                  className="pointer"
-                  onClick={
-                    obj.type && obj.type === "folder"
-                      ? () => openFolder(obj._id)
-                      : () => openFile(obj._id)
-                  }
-                >
-                  <td className="flex align-center justify-start" title={obj.name}>
+                <tr>
+                  <td
+                    className="flex align-center justify-start pointer"
+                    title={obj.name}
+                    onClick={() => open(obj)}
+                  >
                     <FontAwesomeIcon
                       className="exit-button pointer mr-2"
                       icon={obj.type && obj.type === "folder" ? faFolder : faFileWord}
@@ -260,20 +290,20 @@ const FolderBody = ({ folder }) => {
                   <td>{formatDate(obj.createdOn)}</td>
                   <td>{formatSize(obj)}</td>
                   <td>{obj.type && obj.type === "folder" ? "Folder" : "File"}</td>
+                  <td>
+                    <FontAwesomeIcon
+                      className="pointer"
+                      icon={faTrashAlt}
+                      size="2x"
+                      color="#7c1f08"
+                      onClick={() => deleteItem(obj)}
+                    />
+                  </td>
                 </tr>
               );
             })}
         </tbody>
       </table>
-      {/* {folder._id !== 1 && (
-        <FontAwesomeIcon
-          className="delete-button pointer"
-          icon={faTrashAlt}
-          size="2x"
-          color="#7c1f08"
-          onClick={deleteFolder}
-        />
-      )} */}
     </div>
   );
 };

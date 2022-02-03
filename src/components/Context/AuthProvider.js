@@ -9,6 +9,10 @@ const AuthProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("isAuthenticated"))
   );
 
+  useEffect(() => {
+    localStorage.setItem("isAuthenticated", isAuthenticated);
+  }, isAuthenticated);
+
   return (
     <AuthContext.Provider
       value={{
