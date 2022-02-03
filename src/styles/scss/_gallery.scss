@@ -1,0 +1,57 @@
+.gallery {
+  height: 70%;
+  min-width: 50%;
+  background: rgb(52, 52, 52);
+  resize: both;
+  display: block;
+  overflow: auto;
+
+  .gallery-body {
+    position: relative;
+    height: calc(100% - 3rem);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    grid-gap: 50px;
+    justify-content: center;
+    overflow-y: auto;
+
+    .title {
+      white-space: nowrap;
+      width: 150px;
+      text-overflow: ellipsis;
+      display: inline-block;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .gallery-image {
+      transition: 0.2s all ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    .view-image {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      background: #000000e8;
+
+      svg {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+
+      img {
+        width: 100%;
+        max-width: 600px;
+      }
+    }
+  }
+}

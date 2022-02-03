@@ -14,8 +14,8 @@
     height: 7rem;
     width: 100%;
     flex-direction: row;
-    // justify-content: space-around;
     align-items: center;
+    overflow-x: hidden;
 
     button:not(:last-child) {
       margin-right: 1rem;

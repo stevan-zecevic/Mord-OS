@@ -1,0 +1,22 @@
+.browser {
+  height: 75%;
+  min-height: 75%;
+  min-width: 50%;
+
+  iframe {
+    height: calc(100% - 3rem);
+    width: 100%;
+    border: none;
+    background-color: white;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+
+  @media screen and (max-width: $medium) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: $small) {
+    width: 90%;
+  }
+}

@@ -4,7 +4,7 @@ import FolderBody from "./FolderBody";
 
 const Folder = ({ folder = {} }) => {
   return (
-    <section className="folder overflow-auto">
+    <section className="folder window overflow-auto">
       <FolderHeader folder={folder} />
       <FolderBody folder={folder} />
     </section>

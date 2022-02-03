@@ -20,7 +20,7 @@ const File = ({ file = {} }) => {
   };
 
   return (
-    <section className="file">
+    <section className="file window">
       <FileHeader file={file} />
       <textarea
         className="p-4"

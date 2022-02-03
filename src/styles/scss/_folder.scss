@@ -1,12 +1,7 @@
 .folder {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 70%;
+  min-width: 50%;
   height: 50%;
   background: #343434;
-  border-radius: 0.5rem;
   resize: both;
 
   .header {
@@ -15,7 +10,7 @@
     left: 0;
     height: 3rem;
     width: 100%;
-    background-color: #2b2b2b;
+
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
 
@@ -45,23 +40,6 @@
         font-size: 1rem;
       }
     }
-
-    .filter-input {
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      outline: none;
-      border: none;
-      background: white;
-    }
-
-    .exit-button {
-      transition: 0.2s all ease;
-
-      &:hover {
-        color: #d98324;
-        transform: scale(1.1);
-      }
-    }
   }
 
   .folder-body {
@@ -85,23 +63,6 @@
           white-space: nowrap;
         }
       }
-    }
-
-    &::-webkit-scrollbar {
-      cursor: pointer;
-      width: 7px; /* width of the entire scrollbar */
-    }
-
-    &::-webkit-scrollbar-track {
-      cursor: pointer;
-      background: transparent; /* color of the tracking area */
-    }
-
-    &::-webkit-scrollbar-thumb {
-      cursor: pointer;
-      background-color: gray; /* color of the scroll thumb */
-      border-radius: 20px; /* roundness of the scroll thumb */
-      border: none; /* creates padding around scroll thumb */
     }
   }
 

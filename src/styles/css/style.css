@@ -267,18 +267,32 @@
   padding-bottom: 1rem;
 }
 
-.overflow-auto {
-  overflow: auto;
-}
-
-.pointer {
-  cursor: pointer;
-}
-
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: "Nunito", sans-serif;
+}
+
+*::-webkit-scrollbar {
+  cursor: pointer;
+  width: 7px;
+  /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+  cursor: pointer;
+  background: transparent;
+  /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  background-color: gray;
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  /* roundness of the scroll thumb */
+  border: none;
+  /* creates padding around scroll thumb */
 }
 
 @media screen and (max-width: 900px) {
@@ -313,6 +327,41 @@ textarea {
 .App {
   height: 100vh;
   width: 100vw;
+}
+
+.window {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+.header {
+  background-color: #2b2b2b;
+}
+
+.exit-button {
+  -webkit-transition: 0.2s all ease;
+  transition: 0.2s all ease;
+}
+
+.exit-button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  color: #d98324;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .custom-input {
@@ -420,8 +469,8 @@ textarea {
 
 .custom-button {
   color: #747474;
-  padding: 0.75rem 1rem;
   border: 2px solid #747474;
+  padding: 0.75rem;
   border-radius: 1rem;
   background: transparent;
   -webkit-transition: 0.2s all ease;
@@ -433,6 +482,13 @@ textarea {
           transform: scale(1.2);
   color: white;
   border-color: white;
+}
+
+@media screen and (max-width: 650px) {
+  .custom-button svg {
+    width: 1.5em;
+    height: 1.5rem;
+  }
 }
 
 .add-button {
@@ -566,22 +622,61 @@ textarea {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    overflow-x: hidden;
   }
   .control-panel button:not(:last-child) {
     margin-right: 1rem;
   }
 }
 
-.folder {
+.header {
+  height: 3rem;
+  border: none;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  color: white;
+}
+
+.header span {
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 900px) {
+  .header span {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .header span {
+    font-size: 1rem;
+  }
+}
+
+.header .search {
+  position: relative;
+  width: 50%;
+}
+
+.header .search input {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+.header .search svg {
   position: absolute;
-  left: 50%;
+  right: 1rem;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  min-width: 70%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.folder {
+  min-width: 50%;
   height: 50%;
   background: #343434;
-  border-radius: 0.5rem;
   resize: both;
 }
 
@@ -591,7 +686,6 @@ textarea {
   left: 0;
   height: 3rem;
   width: 100%;
-  background-color: #2b2b2b;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
 }
@@ -629,25 +723,6 @@ textarea {
   }
 }
 
-.folder .header .filter-input {
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  outline: none;
-  border: none;
-  background: white;
-}
-
-.folder .header .exit-button {
-  -webkit-transition: 0.2s all ease;
-  transition: 0.2s all ease;
-}
-
-.folder .header .exit-button:hover {
-  color: #d98324;
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-}
-
 .folder .folder-body {
   position: absolute;
   top: 3rem;
@@ -672,28 +747,6 @@ textarea {
   white-space: nowrap;
 }
 
-.folder .folder-body::-webkit-scrollbar {
-  cursor: pointer;
-  width: 7px;
-  /* width of the entire scrollbar */
-}
-
-.folder .folder-body::-webkit-scrollbar-track {
-  cursor: pointer;
-  background: transparent;
-  /* color of the tracking area */
-}
-
-.folder .folder-body::-webkit-scrollbar-thumb {
-  cursor: pointer;
-  background-color: gray;
-  /* color of the scroll thumb */
-  border-radius: 20px;
-  /* roundness of the scroll thumb */
-  border: none;
-  /* creates padding around scroll thumb */
-}
-
 @media screen and (max-width: 900px) {
   .folder {
     width: 90%;
@@ -701,16 +754,10 @@ textarea {
 }
 
 .file {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
   width: 33%;
   height: 50%;
   background: #2b2b2b;
   color: white;
-  border-radius: 0.5rem;
   border: 1px solid #0e0e0e;
   -webkit-box-shadow: 0px 0px 5px #2b2b2b;
           box-shadow: 0px 0px 5px #2b2b2b;
@@ -727,12 +774,6 @@ textarea {
   font-size: 1rem;
 }
 
-.file .exit-button:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-  color: #d98324;
-}
-
 @media screen and (max-width: 1100px) {
   .file {
     width: 50%;
@@ -747,6 +788,170 @@ textarea {
 
 @media screen and (max-width: 650px) {
   .file {
+    width: 90%;
+  }
+}
+
+.browser {
+  height: 75%;
+  min-height: 75%;
+  min-width: 50%;
+}
+
+.browser iframe {
+  height: calc(100% - 3rem);
+  width: 100%;
+  border: none;
+  background-color: white;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+@media screen and (max-width: 900px) {
+  .browser {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .browser {
+    width: 90%;
+  }
+}
+
+.camera {
+  min-width: 50%;
+}
+
+.camera video {
+  height: calc(100% - 3rem);
+  width: 100%;
+  background-color: rgba(128, 128, 128, 0.37);
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.camera .switch-camera {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+}
+
+@media screen and (max-width: 900px) {
+  .camera {
+    width: 90%;
+  }
+}
+
+.gallery {
+  height: 70%;
+  min-width: 50%;
+  background: #343434;
+  resize: both;
+  display: block;
+  overflow: auto;
+}
+
+.gallery .gallery-body {
+  position: relative;
+  height: calc(100% - 3rem);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (250px)[auto-fill];
+      grid-template-columns: repeat(auto-fill, 250px);
+  grid-gap: 50px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow-y: auto;
+}
+
+.gallery .gallery-body .title {
+  white-space: nowrap;
+  width: 150px;
+  text-overflow: ellipsis;
+  display: inline-block;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.gallery .gallery-body .gallery-image {
+  -webkit-transition: 0.2s all ease;
+  transition: 0.2s all ease;
+}
+
+.gallery .gallery-body .gallery-image:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.gallery .gallery-body .view-image {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: #000000e8;
+}
+
+.gallery .gallery-body .view-image svg {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.gallery .gallery-body .view-image img {
+  width: 100%;
+  max-width: 600px;
+}
+
+.news {
+  height: 70%;
+  min-width: 50%;
+  background: #343434;
+  resize: both;
+  display: block;
+  overflow: auto;
+}
+
+.news .news-body {
+  position: relative;
+  height: calc(100% - 3rem);
+  overflow-y: auto;
+}
+
+.news .news-body div {
+  border: 1px solid #aa651bda;
+}
+
+.news .news-body .title {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  color: #d98324;
+}
+
+.news .news-body .content {
+  color: white;
+  font-size: 1rem;
+}
+
+.news .news-body .email {
+  color: #b3281e;
+  font-weight: 500;
+  font-style: italic;
+  text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+  .news {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .news {
     width: 90%;
   }
 }
