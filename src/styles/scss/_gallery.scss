@@ -54,4 +54,12 @@
       }
     }
   }
+
+  @media screen and (max-width: $medium) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: $small) {
+    width: 90%;
+  }
 }
