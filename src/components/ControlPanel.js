@@ -68,7 +68,7 @@ const ControlPanel = ({
       />
       <Button
         className="mb-4"
-        title="News"
+        title="Log Out"
         icon={<FontAwesomeIcon icon={faSignOutAlt} size="2x" />}
         onClick={logout}
       />
