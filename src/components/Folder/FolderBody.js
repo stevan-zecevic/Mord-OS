@@ -117,14 +117,6 @@ const FolderBody = ({ folder }) => {
     return "";
   };
 
-  const deleteFolder = () => {
-    const newFiles = files.filter((fileObj) => !folder.subFiles.includes(fileObj._id));
-    const newFolders = folders.filter((folderObj) => folderObj._id !== folder._id);
-
-    setFiles(newFiles);
-    setFolders(newFolders);
-  };
-
   return (
     <div className="folder-body p-4 ">
       <table>

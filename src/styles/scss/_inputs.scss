@@ -48,6 +48,7 @@
     transform: translateY(-50%);
     color: gray;
     transition: 0.2s ease all;
+    cursor: text;
   }
 
   input:focus ~ .floating-label,
