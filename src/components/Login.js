@@ -28,7 +28,7 @@ const Login = () => {
     setPasswordType(passwordType == "password" ? "text" : "password");
 
   return (
-    <section className="login flex justify-space-around align-center">
+    <section className="login flex justify-space-around align-center p-4">
       <div className="titles flex justify-center align-center">
         <img src="/images/the-one-ring.png" />
         <div>

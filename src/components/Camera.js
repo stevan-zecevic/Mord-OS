@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { faCamera, faSync, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faSync } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "./Common/Header";
 
@@ -14,7 +14,7 @@ const Camera = ({ toggleCamera }) => {
   const initVideo = async () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       const constraints = {
-        video: true,
+        video: { facingMode },
         audio: true,
       };
 
