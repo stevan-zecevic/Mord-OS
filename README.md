@@ -125,7 +125,6 @@ Other functionalities that are not as crucial but could really help enrich the O
     - name - name of file, first value is always "New File"
     - createdOn - date the file was created
     - size - size of current folder in Bytes, in this project 1 character has size of 1 Byte
-    - subFiles - arrays of all subfiles
     - open - status which stores two possible values
       - true - represents the file is open 
       - false - represents the file is closed
